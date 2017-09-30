@@ -1,0 +1,25 @@
+#inherit_from: .rubocop_todo.yml
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+  Exclude:
+    - db/schema.rb
+    - bin/rake
+    - bin/rails
+    - bin/spring
+    - bin/setup
+    - config/initializers/secret_token.rb
+    - db/migrate/*
+
+# Offense count: 9
+Style/Documentation:
+  Enabled: false
+
+# Offense count: 28
+# Configuration parameters: AllowURI, URISchemes.
+Metrics/LineLength:
+  Max: 120
+
+Style/BlockComments:
+  Enabled: false
