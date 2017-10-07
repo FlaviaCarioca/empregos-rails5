@@ -23,5 +23,11 @@ RSpec.describe AuthToken do
 
       expect(decoded_token).not_to be_nil
     end
+
+    it 'returns nil if encoding throws an error' do
+      payload = AuthToken.decode(nil)
+
+      expect(payload).to be_nil
+    end
   end
 end

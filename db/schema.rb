@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170930190452) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", limit: 50, null: false
-    t.string "password", limit: 50, null: false
+    t.string "password_digest", null: false
     t.integer "profile_id", null: false
     t.string "profile_type", limit: 10, null: false
     t.datetime "created_at", null: false

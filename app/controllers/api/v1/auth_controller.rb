@@ -1,11 +1,12 @@
 # Authentication class
 module API::V1
   class AuthController < ApplicationController
-    skip_before_action :authenticate_request
+    skip_before_action :authenticate_request, only: [:authenticate]
 
     def authenticate
-      user = User.find_by_credentials(auth_params[:username], auth_params[:password])
-      if user.present?
+      user = User.find_by(email: auth_params[:username])
+      
+      if user.present? && user.authenticate(auth_params[:password])
         token = user.generate_auth_token
 
         if token.blank?

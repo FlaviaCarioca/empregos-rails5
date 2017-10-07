@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   before_action :authenticate_request
 
   rescue_from JWT::ExpiredSignature do
-    logger.info("ApplicationController - ExpiredSignature error")
+    logger.info('ApplicationController - ExpiredSignature error')
     render json: { error: 'Auth token is expired' }, status: 419 # unofficial timeout status code
   end
 
@@ -10,12 +10,10 @@ class ApplicationController < ActionController::API
 
   # Find the user if able to decode the token.
   def authenticate_request
-    if decoded_auth_token
-      @current_user ||= User.find(decoded_auth_token[0]['user_id'])
-    end
+    @current_user ||= User.find(decoded_auth_token['user_id']) if decoded_auth_token
 
     if @current_user.blank?
-      logger.info("ApplicationController#authenticate_request - Unauthorized Request")
+      logger.info('ApplicationController#authenticate_request - Unauthorized Request')
       render json: { error: 'Not Authorized' }, status: :unauthorized
     end
   end
