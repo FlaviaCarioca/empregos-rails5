@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe API::V1::UsersController, type: :request do
-  describe 'POST Create' do
+  describe 'User creation' do
     before(:all) do
       @first_name = Faker::Name.first_name
       @last_name =  Faker::Name.last_name
